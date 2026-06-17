@@ -1,48 +1,49 @@
-# Harsh Trivedi — Personal Portfolio
+# HARSH TRIVEDI — PERSONAL PORTFOLIO
 
-Hi there! I'm Harsh Trivedi, a B.Tech Computer Science 
-student at Aravali Institute of Technical Studies, Udaipur.
-This is my personal developer portfolio website.
+PERSONAL DEVELOPER PORTFOLIO WEBSITE BUILT FROM SCRATCH 
+USING HTML, CSS AND JAVASCRIPT.
 
-## 🔗 Live Site
-:https://harshtrivedi4480-cyber.github.io/
-- 🏠 Hero — Introduction and typing animation
-- 👨‍💻 About — Personal info and quick details
-- 🎓 Education — B.Tech at Aravali Institute of Technical Studies
-- 🛠️ Skills — Tech stack and soft skills
-- 🚀 Projects — All projects with live links
-- 📞 Contact — Email, Phone and LinkedIn
+## 🔗 LIVE SITE
+https://harshtrivedi4480-cyber.github.io
 
-## 🛠️ Built With
+## 📌 SECTIONS
+- 🏠 HERO — INTRODUCTION AND TYPING ANIMATION
+- 👨‍💻 ABOUT — PERSONAL INFO AND QUICK DETAILS
+- 🎓 EDUCATION — B.TECH AT ARAVALI INSTITUTE OF TECHNICAL STUDIES
+- 🛠️ SKILLS — TECH STACK AND SOFT SKILLS
+- 🚀 PROJECTS — ALL PROJECTS WITH LIVE LINKS
+- 📞 CONTACT — EMAIL, PHONE AND LINKEDIN
+
+## 🛠️ BUILT WITH
 - HTML
 - CSS
-- JavaScript
+- JAVASCRIPT
 
-## ✨ Features
-- Particle animation background
-- Typing effect animation
-- Smooth scroll reveal animations
-- Fully responsive design
-- Interactive hover effects
-- Cursor glow effect
+## ✨ FEATURES
+- PARTICLE ANIMATION BACKGROUND
+- TYPING EFFECT ANIMATION
+- SMOOTH SCROLL REVEAL ANIMATIONS
+- FULLY RESPONSIVE DESIGN
+- INTERACTIVE HOVER EFFECTS
+- CURSOR GLOW EFFECT
 
-## 🚀 Projects
-- Personal Portfolio Website
-- Weather App
-- Java OOP Mini Projects
-- Python Utility Scripts
+## 🚀 PROJECTS
+- 🌐 PERSONAL PORTFOLIO WEBSITE
+- ☁️ WEATHER APP
+- ☕ JAVA OOP MINI PROJECTS
+- 🐍 PYTHON UTILITY SCRIPTS
 
-## 👨‍💻 Author
-**Harsh Trivedi**
-B.Tech Computer Science — 3rd Year
-Aravali Institute of Technical Studies
-Umarda, Udaipur, Rajasthan
+## 👨‍💻 AUTHOR
+**HARSH TRIVEDI**
+B.TECH COMPUTER SCIENCE — 3RD YEAR
+ARAVALI INSTITUTE OF TECHNICAL STUDIES
+UMARDA, UDAIPUR, RAJASTHAN
 
-## 📞 Contact
-- 📧 Email: harshtrivedi4480@gmail.com
-- 📱 Phone: +91 8005992078
-- 💼 LinkedIn: linkedin.com/in/harsh-trivedi-6b9725393
-- 🐙 GitHub: github.com/harshtrivedi4480-cyber
+## 📞 CONTACT
+- 📧 EMAIL: harshtrivedi4480@gmail.com
+- 📱 PHONE: +91 8005992078
+- 💼 LINKEDIN: linkedin.com/in/harsh-trivedi-6b9725393
+- 🐙 GITHUB: github.com/harshtrivedi4480-cyber
 
-## 📄 License
-This project is open source and available for everyone.
+## 📄 LICENSE
+THIS PROJECT IS OPEN SOURCE AND AVAILABLE FOR EVERYONE.
