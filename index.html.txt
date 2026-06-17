@@ -1,0 +1,887 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harsh Trivedi | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #07070d;
+    --bg-soft: #0d0f1c;
+    --panel: #11142399;
+    --line: #2a2d45;
+    --blue: #5dd9ff;
+    --purple: #9d6bff;
+    --pink: #ff6bd6;
+    --text: #e8e9f3;
+    --text-dim: #8b8da6;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Sora', sans-serif;
+    --body: 'Space Grotesk', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    overflow-x:hidden;
+  }
+
+  /* ===== Canvas Background ===== */
+  #bg-canvas{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    z-index:0;
+    pointer-events:none;
+  }
+
+  /* ===== Nav ===== */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 6%;
+    backdrop-filter:blur(12px);
+    background:rgba(7,7,13,0.55);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:var(--mono);
+    font-size:1.1rem;
+    font-weight:500;
+    letter-spacing:1px;
+    color:var(--text);
+  }
+  .logo span{color:var(--blue);}
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+  }
+  .nav-links a{
+    color:var(--text-dim);
+    text-decoration:none;
+    font-size:0.92rem;
+    font-family:var(--mono);
+    letter-spacing:0.5px;
+    transition:color 0.25s;
+    position:relative;
+  }
+  .nav-links a:hover, .nav-links a:focus{color:var(--blue);}
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    bottom:-6px; left:0;
+    width:0%; height:1px;
+    background:var(--blue);
+    transition:width 0.25s;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  @media (max-width:768px){
+    .nav-links{display:none;}
+  }
+
+  /* ===== Sections base ===== */
+  section{
+    position:relative;
+    z-index:1;
+    padding:120px 6%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.85rem;
+    color:var(--blue);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+
+  /* ===== Hero ===== */
+  #hero{
+    align-items:flex-start;
+    padding-top:140px;
+  }
+  .hero-inner{
+    max-width:900px;
+  }
+  .hero-greet{
+    font-family:var(--mono);
+    color:var(--text-dim);
+    font-size:1.05rem;
+    margin-bottom:14px;
+  }
+  .hero-title{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(3rem, 9vw, 6.5rem);
+    line-height:1.02;
+    letter-spacing:-2px;
+    background:linear-gradient(120deg, #ffffff 30%, var(--blue) 60%, var(--purple) 90%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:18px;
+  }
+  .hero-role{
+    font-family:var(--mono);
+    font-size:clamp(1rem, 2.5vw, 1.4rem);
+    color:var(--purple);
+    letter-spacing:1px;
+    margin-bottom:28px;
+  }
+  .hero-desc{
+    font-size:1.05rem;
+    line-height:1.8;
+    color:var(--text-dim);
+    max-width:580px;
+    margin-bottom:40px;
+  }
+  .hero-cta{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:0.9rem;
+    letter-spacing:1px;
+    padding:14px 32px;
+    border-radius:2px;
+    text-decoration:none;
+    transition:all 0.3s;
+    border:1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:linear-gradient(120deg, var(--blue), var(--purple));
+    color:#07070d;
+    font-weight:600;
+  }
+  .btn-primary:hover{
+    box-shadow:0 0 30px rgba(93,217,255,0.4);
+    transform:translateY(-2px);
+  }
+  .btn-outline{
+    border-color:var(--line);
+    color:var(--text);
+  }
+  .btn-outline:hover{
+    border-color:var(--blue);
+    color:var(--blue);
+  }
+
+  .hero-scroll{
+    position:absolute;
+    bottom:50px;
+    left:6%;
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--text-dim);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    letter-spacing:2px;
+  }
+  .scroll-line{
+    width:1px;
+    height:50px;
+    background:linear-gradient(to bottom, var(--blue), transparent);
+    animation:scrollPulse 2s infinite;
+  }
+  @keyframes scrollPulse{
+    0%,100%{opacity:0.3;}
+    50%{opacity:1;}
+  }
+
+  /* ===== Section headers ===== */
+  .section-head{
+    margin-bottom:60px;
+  }
+  .section-title{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(2.2rem, 5vw, 3.5rem);
+    letter-spacing:-1px;
+  }
+  .section-title .accent{
+    color:var(--blue);
+  }
+
+  /* ===== About ===== */
+  #about .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .about-text p{
+    font-size:1.1rem;
+    line-height:1.9;
+    color:var(--text-dim);
+    margin-bottom:20px;
+  }
+  .about-text strong{color:var(--text);}
+  .info-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:32px;
+    backdrop-filter:blur(8px);
+  }
+  .info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:0.9rem;
+  }
+  .info-row:last-child{border-bottom:none;}
+  .info-row .label{color:var(--text-dim);}
+  .info-row .value{color:var(--text); text-align:right;}
+
+  @media (max-width:900px){
+    #about .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ===== Skills ===== */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(170px,1fr));
+    gap:18px;
+    margin-top:20px;
+  }
+  .skill-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px 20px;
+    text-align:center;
+    transition:all 0.35s;
+    position:relative;
+    overflow:hidden;
+  }
+  .skill-card::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:2px;
+    background:linear-gradient(90deg, var(--blue), var(--purple));
+    transform:scaleX(0);
+    transition:transform 0.35s;
+    transform-origin:left;
+  }
+  .skill-card:hover::before{transform:scaleX(1);}
+  .skill-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--blue);
+    box-shadow:0 10px 30px -10px rgba(93,217,255,0.25);
+  }
+  .skill-icon{
+    font-family:var(--mono);
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--blue);
+    margin-bottom:10px;
+    display:block;
+  }
+  .skill-name{
+    font-family:var(--body);
+    font-size:0.95rem;
+    color:var(--text);
+    font-weight:500;
+  }
+
+  .soft-skills{
+    margin-top:50px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .soft-pill{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    color:var(--purple);
+    border:1px solid var(--purple);
+    border-radius:30px;
+    padding:8px 18px;
+  }
+
+  /* ===== Projects ===== */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+    gap:28px;
+  }
+  .project-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:36px;
+    transition:all 0.35s;
+    position:relative;
+  }
+  .project-card:hover{
+    border-color:var(--purple);
+    transform:translateY(-6px);
+    box-shadow:0 15px 40px -15px rgba(157,107,255,0.3);
+  }
+  .project-num{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--text-dim);
+    letter-spacing:2px;
+    margin-bottom:16px;
+  }
+  .project-title{
+    font-family:var(--display);
+    font-size:1.5rem;
+    font-weight:700;
+    margin-bottom:14px;
+    color:var(--text);
+  }
+  .project-desc{
+    color:var(--text-dim);
+    line-height:1.8;
+    margin-bottom:22px;
+    font-size:0.98rem;
+  }
+  .project-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .tag{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--blue);
+    background:rgba(93,217,255,0.08);
+    border:1px solid rgba(93,217,255,0.25);
+    border-radius:4px;
+    padding:5px 12px;
+  }
+  .project-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:24px;
+    font-family:var(--mono);
+    font-size:0.85rem;
+    letter-spacing:1px;
+    color:var(--purple);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:all 0.25s;
+  }
+  .project-link:hover{
+    color:var(--blue);
+    border-bottom-color:var(--blue);
+  }
+  .project-link::after{
+    content:'→';
+    transition:transform 0.25s;
+  }
+  .project-link:hover::after{
+    transform:translateX(4px);
+  }
+
+  /* ===== Contact ===== */
+  #contact{
+    text-align:center;
+    align-items:center;
+  }
+  .contact-title{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(2.5rem,7vw,5rem);
+    letter-spacing:-2px;
+    margin-bottom:24px;
+    background:linear-gradient(120deg, #ffffff, var(--purple));
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .contact-sub{
+    color:var(--text-dim);
+    font-size:1.1rem;
+    max-width:520px;
+    margin:0 auto 40px;
+    line-height:1.8;
+  }
+  .contact-links{
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+  }
+  .contact-link{
+    font-family:var(--mono);
+    font-size:0.95rem;
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px 28px;
+    text-decoration:none;
+    transition:all 0.3s;
+  }
+  .contact-link:hover{
+    border-color:var(--blue);
+    color:var(--blue);
+    box-shadow:0 0 25px rgba(93,217,255,0.18);
+  }
+  footer{
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--text-dim);
+    text-align:center;
+    padding:30px 6% 50px;
+    border-top:1px solid var(--line);
+  }
+
+  /* fade in on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *, .reveal{transition:none !important; animation:none !important;}
+    .reveal{opacity:1; transform:none;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--blue);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas" tabindex="0" role="img" aria-label="Interactive 3D Earth"></canvas>
+
+<nav>
+  <div class="logo">HT<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <p class="hero-greet">// Hello, I'm</p>
+    <h1 class="hero-title">Harsh<br>Trivedi</h1>
+    <!-- <p class="hero-role">B.Tech Computer Science · 3rd Year Student</p> -->
+    <p class="hero-desc">
+      Motivated and detail-oriented computer science student building a strong
+      foundation in web development and programming — currently exploring
+      HTML, CSS, JavaScript, Java, Python and C while learning new technologies
+      one project at a time.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    SCROLL
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head reveal">
+    <p class="eyebrow">About Me</p>
+    <h2 class="section-title">Who I <span class="accent">Am</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <!-- <p>
+        I'm <strong>Harsh Trivedi</strong>, a B.Tech Computer Science student
+        (3rd Year) at AITS, Udaipur, with an expected graduation in 2027.
+      </p> -->
+      <p>
+        I have basic knowledge of programming and web development, and I'm
+        passionate about applying my skills, learning new technologies, and
+        contributing to meaningful projects while growing as a developer.
+      </p>
+      <p>
+        Alongside my technical learning, I bring strong <strong>communication,
+        problem-solving, adaptability and teamwork</strong> skills, and I'm
+        always eager to take on new challenges and grow as a developer.
+      </p>
+    
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head reveal">
+    <p class="eyebrow">Skills</p>
+    <h2 class="section-title">Tech <span class="accent">Stack</span></h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <span class="skill-icon">&lt;/&gt;</span>
+      <span class="skill-name">HTML</span>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">{ }</span>
+      <span class="skill-name">CSS</span>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">JS</span>
+      <span class="skill-name">JavaScript</span>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">J</span>
+      <span class="skill-name">Java</span>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">PY</span>
+      <span class="skill-name">Python</span>
+    </div>
+    <div class="skill-card">
+      <span class="skill-icon">C</span>
+      <span class="skill-name">C Language</span>
+    </div>
+  </div>
+
+  <div class="soft-skills reveal">
+    <span class="soft-pill">Communication</span>
+    <span class="soft-pill">Problem Solving</span>
+    <span class="soft-pill">Teamwork</span>
+    <span class="soft-pill">Time Management</span>
+    <span class="soft-pill">Adaptability</span>
+    <span class="soft-pill">Active Listening</span>
+    <span class="soft-pill">Quick Learning</span>
+    <span class="soft-pill">Multitasking</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-head reveal">
+    <p class="eyebrow">Projects</p>
+    <h2 class="section-title">What I've <span class="accent">Built</span></h2>
+  </div>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-num">PROJECT 01</div>
+      <div class="project-title">Personal Portfolio Website</div>
+      <p class="project-desc">
+        A responsive personal portfolio website built from scratch with a
+        clean, user-friendly interface and simple, intuitive navigation.
+      </p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Responsive Design</span>
+      </div>
+      <a href="#" class="project-link" target="_blank" rel="noopener">View Project</a>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PROJECT 02</div>
+      <div class="project-title">Basic Java Programs</div>
+      <p class="project-desc">
+        A collection of mini Java programs built around core concepts —
+        loops, arrays, functions and object-oriented programming (OOP) — to
+        strengthen fundamentals.
+      </p>
+      <div class="project-tags">
+        <span class="tag">Java</span>
+        <span class="tag">OOP</span>
+        <span class="tag">Algorithms</span>
+      </div>
+      <a href="#" class="project-link" target="_blank" rel="noopener">View Project</a>
+    </div>
+    <div class="project-card">
+      <div class="project-num">PROJECT 03</div>
+      <div class="project-title">Weather App</div>
+      <p class="project-desc">
+        A simple weather application that fetches real-time weather data
+        using a public API and displays temperature, conditions and location
+        details through a clean, responsive interface.
+      </p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">API</span>
+      </div>
+      <a href="#" class="project-link" target="_blank" rel="noopener">View Project</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="eyebrow" style="justify-content:center;">Get In Touch</p>
+  <h2 class="contact-title">Let's Connect</h2>
+  <p class="contact-sub">
+    I'm always open to learning opportunities, collaborations, and
+    conversations about technology. Feel free to reach out!
+  </p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:harshtrivedi4480@gmail.com">harshtrivedi4480@gmail.com</a>
+    <a class="contact-link" href="tel:8005992078">+91 8005992078</a>
+    <a class="contact-link" href="https://linkedin.com/in/harsh-trivedi-6b9725393" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Harsh Trivedi — Built with HTML, CSS, JavaScript & Three.js
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  // ===== Three.js Interactive Earth =====
+  const canvas = document.getElementById('bg-canvas');
+  // allow keyboard focus for accessibility
+  canvas.style.outline = 'none';
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  function getPixelRatio(){ return Math.min(window.devicePixelRatio || 1, 1.5); }
+  renderer.setPixelRatio(getPixelRatio());
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+
+  const scene = new THREE.Scene();
+
+  // Camera
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+  function updateCameraForViewport(){
+    const w = window.innerWidth;
+    if (w < 480) camera.position.set(0, 0, 4.8);
+    else if (w < 900) camera.position.set(0, 0, 5.2);
+    else camera.position.set(0, 0, 6.0);
+    camera.updateProjectionMatrix();
+  }
+  updateCameraForViewport();
+
+  // Lighting (tuned for land & water contrast)
+  const ambient = new THREE.AmbientLight(0xffffff, 0.35);
+  scene.add(ambient);
+  const hemi = new THREE.HemisphereLight(0x88baff, 0x08121a, 0.25);
+  scene.add(hemi);
+  const dir = new THREE.DirectionalLight(0xfff5ea, 1.0);
+  dir.position.set(5, 3, 5);
+  dir.castShadow = false;
+  scene.add(dir);
+
+  // Load textures (from reliable public sources)
+  const loader = new THREE.TextureLoader();
+  const textureURLs = {
+    map: 'https://threejsfundamentals.org/threejs/resources/images/earth-day.jpg',
+    normal: 'https://threejsfundamentals.org/threejs/resources/images/earth-normal.jpg',
+    specular: 'https://threejsfundamentals.org/threejs/resources/images/earth-specular.jpg',
+    clouds: 'https://threejsfundamentals.org/threejs/resources/images/earth-clouds.png'
+  };
+
+  const textures = {};
+  let texturesLoaded = 0;
+  const totalTextures = Object.keys(textureURLs).length;
+  Object.entries(textureURLs).forEach(([k, url]) => {
+    loader.load(url, (tex) => {
+      try{ tex.encoding = THREE.sRGBEncoding; }catch(e){}
+      try{ tex.anisotropy = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 1; }catch(e){}
+      textures[k] = tex; texturesLoaded++;
+    }, undefined, () => { texturesLoaded++; });
+  });
+
+  // Starfield background (subtle)
+  function createStarfield(){
+    const starsGeo = new THREE.BufferGeometry();
+    const starCount = 800;
+    const positions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++){
+      const r = 40 + Math.random() * 60;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      positions[i*3] = r * Math.sin(phi) * Math.cos(theta);
+      positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+      positions[i*3+2] = r * Math.cos(phi);
+    }
+    starsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.6, opacity: 0.6, transparent: true });
+    const starPoints = new THREE.Points(starsGeo, starMat);
+    scene.add(starPoints);
+  }
+  createStarfield();
+
+  // Earth group
+  const earthGroup = new THREE.Group();
+  scene.add(earthGroup);
+
+  // Create Earth when textures ready (or after a timeout fallback)
+  function buildEarth(){
+    const radius = 1.6;
+    const segments = 64;
+
+    // Surface
+    const earthGeo = new THREE.SphereGeometry(radius, segments, segments);
+    const earthMat = new THREE.MeshPhongMaterial({
+      map: textures.map || null,
+      normalMap: textures.normal || null,
+      specularMap: textures.specular || null,
+      specular: new THREE.Color(0x333a44),
+      shininess: 30
+    });
+    const earthMesh = new THREE.Mesh(earthGeo, earthMat);
+    earthGroup.add(earthMesh);
+
+    // Clouds (transparent layer)
+    const cloudGeo = new THREE.SphereGeometry(radius * 1.0075, segments, segments);
+    const cloudMat = new THREE.MeshLambertMaterial({
+      map: textures.clouds || null,
+      transparent: true,
+      opacity: 0.9,
+      depthWrite: false,
+      alphaTest: 0.01
+    });
+    const cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
+    earthGroup.add(cloudMesh);
+
+    // Atmosphere glow (simple fresnel shader)
+    const atmosphereMat = new THREE.ShaderMaterial({
+      uniforms: {},
+      vertexShader: `varying vec3 vNormal; void main(){ vNormal = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
+      fragmentShader: `varying vec3 vNormal; void main(){ float intensity = pow(0.65 - dot(vNormal, vec3(0.0,0.0,1.0)), 4.0); gl_FragColor = vec4(0.4,0.6,1.0, 0.6 * intensity); }`,
+      blending: THREE.AdditiveBlending,
+      side: THREE.BackSide,
+      transparent: true
+    });
+    const atmosGeo = new THREE.SphereGeometry(radius * 1.14, 32, 32);
+    const atmosMesh = new THREE.Mesh(atmosGeo, atmosphereMat);
+    earthGroup.add(atmosMesh);
+
+    // Position earth relative to hero: slightly to the right and a little back
+    earthGroup.position.set(2.2, 0.4, -1.8);
+
+    // Small subtle rotation start
+    earthGroup.rotation.y = 0.5;
+  }
+
+  // Interaction: smooth drag to rotate earth
+  let isPointerDown = false;
+  let lastX = 0, lastY = 0;
+  const velocity = { x: 0, y: 0 };
+  const damping = 0.95;
+
+  canvas.addEventListener('pointerdown', (e) => { isPointerDown = true; lastX = e.clientX; lastY = e.clientY; canvas.setPointerCapture(e.pointerId); });
+  window.addEventListener('pointerup', (e) => { isPointerDown = false; });
+  window.addEventListener('pointercancel', () => { isPointerDown = false; });
+  window.addEventListener('pointermove', (e) => {
+    if (!isPointerDown) return;
+    const dx = (e.clientX - lastX) / window.innerWidth;
+    const dy = (e.clientY - lastY) / window.innerHeight;
+    velocity.x = dx * 2.0;
+    velocity.y = dy * 2.0;
+    lastX = e.clientX; lastY = e.clientY;
+  });
+
+  // Auto rotation and animation
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let lastTime = performance.now();
+  function animate(time){
+    requestAnimationFrame(animate);
+    const dt = (time - lastTime) / 1000; lastTime = time;
+
+    if (!texturesLoaded || typeof texturesLoaded === 'undefined') return;
+    // Build earth after textures have loaded (or after a small fallback)
+    if (texturesLoaded >= totalTextures && earthGroup.children.length === 0){ buildEarth(); }
+
+    if (!prefersReducedMotion && earthGroup.children.length){
+      // slow automatic rotation
+      earthGroup.rotation.y += 0.08 * dt; // ~0.08 rad/s
+      // apply user velocity (drag)
+      earthGroup.rotation.y += velocity.x;
+      earthGroup.rotation.x += velocity.y * 0.6;
+      // damp velocity
+      velocity.x *= Math.pow(damping, dt * 60);
+      velocity.y *= Math.pow(damping, dt * 60);
+      // limit x rotation
+      earthGroup.rotation.x = Math.max(-0.8, Math.min(0.8, earthGroup.rotation.x));
+    }
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize handling
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      renderer.setPixelRatio(getPixelRatio());
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      updateCameraForViewport();
+      camera.updateProjectionMatrix();
+    }, 120);
+  });
+
+  // Visibility handling to save GPU when hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) renderer.setAnimationLoop(null);
+    else renderer.setAnimationLoop(animate);
+  });
+
+  // Fallback builder if textures fail to load in time
+  setTimeout(() => { if (earthGroup.children.length === 0) buildEarth(); }, 3000);
+
+  // ===== Scroll Reveal (unchanged) =====
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+<noscript>
+  <img src="https://threejsfundamentals.org/threejs/resources/images/earth-day.jpg" alt="Static image of Earth" style="display:block;margin:0 auto;max-width:420px;" />
+</noscript>
+
+</body>
+</html>
