@@ -5,8 +5,7 @@ student at Aravali Institute of Technical Studies, Udaipur.
 This is my personal developer portfolio website.
 
 ## 🔗 Live Site
-https://harshtrivedi4480-cyber.github.io
-
+https:file:///c:/Users/Harsh/OneDrive/Apps/Desktop/harsh.html/index.harsh port.html
 ## 📌 Sections
 - 🏠 Hero — Introduction and typing animation
 - 👨‍💻 About — Personal info and quick details
