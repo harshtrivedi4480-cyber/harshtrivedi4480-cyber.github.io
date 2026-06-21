@@ -16,8 +16,7 @@ https://harshtrivedi4480-cyber.github.io
 
 ## 🛠️ BUILT WITH
 - HTML
-- CSS
-- JAVASCRIPT
+
 
 ## ✨ FEATURES
 - PARTICLE ANIMATION BACKGROUND
